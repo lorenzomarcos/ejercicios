@@ -1,0 +1,1 @@
+{"version":1,"defects":{"MiClaseTest::testSumar":8,"PersonTest::testIsOfLegalAge":7,"PersonTest::testTipe":7},"times":{"MiClaseTest::testSumar":0.006,"PersonTest::testIsOfLegalAge":0.15,"PersonTest::testInitials":0.001,"PersonTest::testeRename":0,"PersonTest::testTipe":0.029}}
