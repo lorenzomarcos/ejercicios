@@ -33,7 +33,7 @@ class PersonTest extends TestCase
     }
 
 
-    public function testeRename()
+    public function testRename()
     {
         $person = new Person("Marcos", "Marin", 30502945, 18);
         $person->rename("Juan", "Jose");

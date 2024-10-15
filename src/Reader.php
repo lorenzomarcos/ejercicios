@@ -14,7 +14,7 @@ class Reader
 
     private array $borrowedBooks;
 
-    public function __construct(string $name,)
+    public function __construct(string $name, )
     {
         $this->name = $name;
         $this->id = Uuid::uuid4()->toString(); //generar un uudi al crear un lector, pero no se como funciona?
@@ -38,8 +38,8 @@ class Reader
         if ($book->isAvailable()) {
             $book->lend(); //aqui estoy llamando al metodo prestar de la clase libro
             $this->borrowedBooks[$book->idBook()] = $book; //estoy agregando un libro a la lista del pana lector
+            return;
         }
-        throw new Exception("No puedes prestar el libro {$book->titleBook()} por que ya no esta disponible");
     }
 
     public function returnBook(Book $book)
@@ -48,8 +48,8 @@ class Reader
         if (isset($this->borrowedBooks[$book->idBook()])) {
             $book->return(); //metodo devolver de libro 
             unset($this->borrowedBooks[$book->idBook()]); //y aqui elimino el libro en teoria
+            return;
         }
-        throw new Exception("No sea tomado prestado el libro {$book->titleBook()}");
     }
 
     public function borrowedBooks(): array
@@ -61,13 +61,13 @@ class Reader
     public function showBorrowedBooks()
     {                   //mostras lista de libros prestados o no se ?
 
-        if ($this->borrowedBooks) {
+        if (empty($this->borrowedBooks)) {
             return "{$this->name} no ha tomando ningun libro pendiente con eso";
         }
 
-        $listBook = "Los libros prestados por {$this->name}";
+        $listBook = "Los libros prestados por {$this->name}:\n";
         foreach ($this->borrowedBooks as $book) {
-            $listBook = $book->showInfo();
+            $listBook .= $book->showInfo() . "\n";
         }
         return $listBook;
     }

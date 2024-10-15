@@ -31,7 +31,7 @@ final class BookTest extends TestCase
         $book = new Book("estamos solos?", "cipriano", "id");
 
         $showinfo = "Titulo: estamos solos? , Autor: cipriano , ID: {$book->idBook()}, Estado: disponible";
-        $this->assertSame($showinfo, $book->showInfo());
+        $this->assertEquals($showinfo, $book->showInfo());
     }
 
     /**
@@ -56,7 +56,7 @@ final class BookTest extends TestCase
 
         $book = new Book("estamos solos?", "cipriano", "id");
 
-        //$book->lend();
+       //$book->lend();
        // $this->assertFalse($book->isAvailable());
 
         $book->return();
