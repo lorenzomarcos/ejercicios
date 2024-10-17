@@ -17,7 +17,7 @@ final class ReaderTest extends TestCase
     public function testReader()
     {
         $test =  Uuid::uuid4()->toString();
-        $reader = new Reader('Daniel',$test);
+        $reader = new Reader('Daniel', $test);
 
         $this->assertEquals("Daniel", $reader->nameReader());
         $this->assertEmpty($reader->borrowedBooks());
@@ -29,8 +29,8 @@ final class ReaderTest extends TestCase
     public function testBorrow()
     {
         $test =  Uuid::uuid4()->toString();
-        $book = new Book("estamos solos?", "cipriano", $test,true);
-        $reader = new Reader('Daniel',$test);
+        $book = new Book("estamos solos?", "cipriano", $test, true);
+        $reader = new Reader('Daniel', $test);
 
 
         $reader->borrow($book);
@@ -45,7 +45,7 @@ final class ReaderTest extends TestCase
     {
 
         $test =  Uuid::uuid4()->toString();
-        $book = new Book("estamos solos?", "cipriano", $test,true);
+        $book = new Book("estamos solos?", "cipriano", $test, true);
         $reader = new Reader('Daniel', $test);
 
         $reader->borrow($book);
@@ -62,10 +62,10 @@ final class ReaderTest extends TestCase
     public function TestShowBook()
     {
         $test =  Uuid::uuid4()->toString();
-        $book1 = new Book("estamos solos?","cipriano",$test,true);
+        $book1 = new Book("estamos solos?", "cipriano", $test, true);
         $test =  Uuid::uuid4()->toString();
-        $book2 = new Book("No estamos solos","cipriano",$test,true);
-        $reader = new Reader('Daniel',$test);
+        $book2 = new Book("No estamos solos", "cipriano", $test, true);
+        $reader = new Reader('Daniel', $test);
 
 
         $reader->borrow($book1);
@@ -74,8 +74,8 @@ final class ReaderTest extends TestCase
         $result = "Los libros prestados por Daniel:\n" .
             $book1->showInfo() . "\n" .
             $book2->showInfo() . "\n";
-            
-            
+
+
 
         $this->assertEquals($result, $reader->showBorrowedBooks());
     }

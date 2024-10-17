@@ -14,7 +14,7 @@ class Reader
 
     private  $borrowedBooks;
 
-    public function __construct(string $name,string $id)
+    public function __construct(string $name, string $id)
     {
         $this->name = $name;
         $this->id = $id; //generar un uudi al crear un lector, pero no se como funciona?

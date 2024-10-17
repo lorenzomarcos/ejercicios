@@ -30,10 +30,10 @@ final class BookTest extends TestCase
     public function testShowInfo()
     {
         $test =  Uuid::uuid4()->toString();
-        $book = new Book("estamos solos?","cipriano", $test, true);
-        
-        $showinfo = "Titulo: estamos solos?, Autor: cipriano, ID: ". $test .", Estado: disponible";
-        
+        $book = new Book("estamos solos?", "cipriano", $test, true);
+
+        $showinfo = "Titulo: estamos solos?, Autor: cipriano, ID: " . $test . ", Estado: disponible";
+
 
         $this->assertEquals($showinfo, $book->showInfo());
     }
@@ -45,7 +45,7 @@ final class BookTest extends TestCase
     public function lend()
     {
         $test =  Uuid::uuid4()->toString();
-        $book = new Book("estamos solos?", "cipriano", $test,true);
+        $book = new Book("estamos solos?", "cipriano", $test, true);
 
         $book->lend();
         $this->assertFalse($book->isAvailable());
@@ -60,17 +60,18 @@ final class BookTest extends TestCase
         $test =  Uuid::uuid4()->toString();
         $book = new Book("estamos solos?", "cipriano", $test, true);
 
-       $book->lend();
-       $this->assertFalse($book->isAvailable());
+        $book->lend();
+        $this->assertFalse($book->isAvailable());
 
         $book->return();
         $this->assertTrue($book->isAvailable());
     }
 
-    public function book (){
+    public function book()
+    {
 
         $test =  Uuid::uuid4()->toString();
-        $book = new Book ("estamos solos?", "cipriano", $test, false);
+        $book = new Book("estamos solos?", "cipriano", $test, false);
 
         $book->return();
 
