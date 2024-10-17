@@ -30,9 +30,9 @@ final class BookTest extends TestCase
     public function testShowInfo()
     {
         $test =  Uuid::uuid4()->toString();
-        $book = new Book("estamos solos?", "cipriano", $test, true);
+        $book = new Book("estamos solos?","cipriano", $test, true);
         
-        $showinfo = "Titulo: estamos solos? , Autor: cipriano , ID: ". $test .", Estado: disponible";
+        $showinfo = "Titulo: estamos solos?, Autor: cipriano, ID: ". $test .", Estado: disponible";
         
 
         $this->assertEquals($showinfo, $book->showInfo());
