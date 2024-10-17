@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Practica\Test;
 
+use Ramsey\Uuid\Uuid;
 use PHPUnit\Framework\TestCase;
+
 
 
 
@@ -16,7 +18,7 @@ final class BookTest extends TestCase
     {
 
 
-        $book = new Book("estamos solos?", "cipriano", "");
+        $book = new Book("estamos solos?", "cipriano", Uuid::uuid4()->toString(), true);
 
         $this->assertEquals("estamos solos?", $book->titleBook());
         $this->assertEquals("cipriano", $book->authorBook());
@@ -27,10 +29,12 @@ final class BookTest extends TestCase
      */
     public function testShowInfo()
     {
+        $test =  Uuid::uuid4()->toString();
+        $book = new Book("estamos solos?", "cipriano", $test, true);
+        
+        $showinfo = "Titulo: estamos solos? , Autor: cipriano , ID: ". $test .", Estado: disponible";
+        
 
-        $book = new Book("estamos solos?", "cipriano", "id");
-
-        $showinfo = "Titulo: estamos solos? , Autor: cipriano , ID: {$book->idBook()}, Estado: disponible";
         $this->assertEquals($showinfo, $book->showInfo());
     }
 
@@ -40,8 +44,8 @@ final class BookTest extends TestCase
 
     public function lend()
     {
-
-        $book = new Book("estamos solos?", "cipriano", "id");
+        $test =  Uuid::uuid4()->toString();
+        $book = new Book("estamos solos?", "cipriano", $test,true);
 
         $book->lend();
         $this->assertFalse($book->isAvailable());
@@ -53,11 +57,11 @@ final class BookTest extends TestCase
 
     public function return()
     {
+        $test =  Uuid::uuid4()->toString();
+        $book = new Book("estamos solos?", "cipriano", $test, true);
 
-        $book = new Book("estamos solos?", "cipriano", "id");
-
-       //$book->lend();
-       // $this->assertFalse($book->isAvailable());
+       $book->lend();
+       $this->assertFalse($book->isAvailable());
 
         $book->return();
         $this->assertTrue($book->isAvailable());
@@ -65,7 +69,8 @@ final class BookTest extends TestCase
 
     public function book (){
 
-        $book = new Book ("estamos solos?", "cipriano", "id");
+        $test =  Uuid::uuid4()->toString();
+        $book = new Book ("estamos solos?", "cipriano", $test, false);
 
         $book->return();
 

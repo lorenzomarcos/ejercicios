@@ -20,12 +20,12 @@ class Book
     private  $available;
 
 
-    public function __construct(string $title, string  $author, string $id)
+    public function __construct(string $title, string  $author, string $id, bool $available)
     {
         $this->title = $title;
         $this->author = $author;
-        $this->id = Uuid::uuid4()->toString(); //generar un uudi al crear un libro, pero no se como funciona? 
-        $this->available = true;
+        $this->id = $id; //generar un uudi al crear un libro, pero no se como funciona? 
+        $this->available = $available;
     }
 
     public function titleBook()
@@ -57,7 +57,7 @@ class Book
     public function return()
     {
 
-        if ($this->available) {
+        if ($this->available == false) {
             $this->available = true;
         }
     }
@@ -66,6 +66,6 @@ class Book
     {
 
         $available = $this->available ? 'disponible' : 'Prestado';
-        return "Titulo: {$this->title} , Autor: {$this->author} , ID: {$this->id}, Estado: {$available}";
+        return "Titulo: {$this->title}, Autor: {$this->author}, ID: {$this->id}, Estado: {$available}";
     }
 }

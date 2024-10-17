@@ -9,15 +9,15 @@ use PHPUnit\Framework\Exception;
 
 class Reader
 {
-    private string $name;
-    private string $id;
+    private  $name;
+    private  $id;
 
-    private array $borrowedBooks;
+    private  $borrowedBooks;
 
-    public function __construct(string $name, )
+    public function __construct(string $name,string $id)
     {
         $this->name = $name;
-        $this->id = Uuid::uuid4()->toString(); //generar un uudi al crear un lector, pero no se como funciona?
+        $this->id = $id; //generar un uudi al crear un lector, pero no se como funciona?
         $this->borrowedBooks = [];
     }
 
