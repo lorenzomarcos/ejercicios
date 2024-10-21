@@ -14,11 +14,11 @@ class Reader
 
     private  $borrowedBooks;
 
-    public function __construct(string $name, string $id)
+    public function __construct(string $name, string $id, array $borrowedBooks)
     {
         $this->name = $name;
         $this->id = $id; //generar un uudi al crear un lector, pero no se como funciona?
-        $this->borrowedBooks = [];
+        $this->borrowedBooks = $borrowedBooks;
     }
 
     public function nameReader()
@@ -37,7 +37,7 @@ class Reader
     {
         if ($book->isAvailable()) {
             $book->lend(); //aqui estoy llamando al metodo prestar de la clase libro
-            $this->borrowedBooks[$book->idBook()] = $book; //estoy agregando un libro a la lista del pana lector
+            $this->borrowedBooks[] = $book; //estoy agregando un libro a la lista del pana lector
             return;
         }
     }
@@ -45,10 +45,12 @@ class Reader
     public function returnBook(Book $book)
     {
 
-        if (isset($this->borrowedBooks[$book->idBook()])) {
-            $book->return(); //metodo devolver de libro 
-            unset($this->borrowedBooks[$book->idBook()]); //y aqui elimino el libro en teoria
-            return;
+        foreach ($this->borrowedBooks as $key => $borrowedBook) {
+            if ($borrowedBook->idBook() === $book->idBook()) {
+                unset($this->borrowedBooks[$key]);
+                $book->return();
+                break;
+            }
         }
     }
 
