@@ -45,18 +45,25 @@ final class ReaderTest extends TestCase
     public function TestReturnBook()
     {
 
-        $test =  Uuid::uuid4()->toString();
-        $reader = new Reader('Daniel', $test,[]);
-        $test2 =  Uuid::uuid4()->toString();
-        $book = new Book("estamos solos?", "cipriano", $test2, true);
-        $test3 =  Uuid::uuid4()->toString();
-        $book = new Book("Harry Potter", "Marcos", $test3, false);
+        $readerId =  Uuid::uuid4()->toString();
+        $reader = new Reader('Daniel', $readerId,[]);
+        $bookId =  Uuid::uuid4()->toString();
+        $book = new Book("estamos solos?", "cipriano", $bookId, true);
+        $bookId2 =  Uuid::uuid4()->toString();
+        $book2 = new Book("Harry Potter", "Marcos", $bookId2, false);
 
 
         $reader->borrow($book);
         $this->assertEquals(false,$book->isAvailable());
         $reader->returnBook($book);
-        $this->assertEquals(false,$book->isAvailable());
+        $this->assertEquals(true,$book->isAvailable());
+
+
+        $reader->borrow($book2);
+        $this->assertEquals(false,$book2->isAvailable());
+        $reader->returnBook($book2);
+        $this->assertEquals(false,$book2->isAvailable());
+
         
     }
  
